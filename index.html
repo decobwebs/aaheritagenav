@@ -92,7 +92,6 @@
             padding-top: 1.5rem;
         }
 
-
         @media (max-width: 768px) {
             .desktop-nav {
                 display: none;
@@ -163,6 +162,12 @@
                 display: inline-block;
             }
         }
+
+        /* Ensure anchor targets are visible below sticky header */
+        section[id] {
+            scroll-margin-top: 88px;
+            /* adjust if header height changes */
+        }
     </style>
 </head>
 
@@ -187,10 +192,11 @@
 
                     <!-- Desktop Nav -->
                     <nav class="hidden md:flex items-center gap-7">
-                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">Our Journey</a>
-                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">Services</a>
-                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">About Us</a>
-                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">Contact</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#our-journey">Our
+                            Journey</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#services">Services</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#about-us">About Us</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#contact">Contact</a>
 
                         <button
                             class="ml-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-opacity-90 transition shadow-md">
@@ -211,19 +217,19 @@
 
                     <a class="text-sm font-medium py-2 px-2 rounded-md 
              hover:bg-gray-100 dark:hover:bg-white/10 
-             active:bg-gray-200 dark:active:bg-white/20" href="#">Our Journey</a>
+             active:bg-gray-200 dark:active:bg-white/20" href="#our-journey">Our Journey</a>
 
                     <a class="text-sm font-medium py-2 px-2 rounded-md 
              hover:bg-gray-100 dark:hover:bg-white/10 
-             active:bg-gray-200 dark:active:bg-white/20" href="#">Services</a>
+             active:bg-gray-200 dark:active:bg-white/20" href="#services">Services</a>
 
                     <a class="text-sm font-medium py-2 px-2 rounded-md 
              hover:bg-gray-100 dark:hover:bg-white/10 
-             active:bg-gray-200 dark:active:bg-white/20" href="#">About Us</a>
+             active:bg-gray-200 dark:active:bg-white/20" href="#about-us">About Us</a>
 
                     <a class="text-sm font-medium py-2 px-2 rounded-md 
              hover:bg-gray-100 dark:hover:bg-white/10 
-             active:bg-gray-200 dark:active:bg-white/20" href="#">Contact</a>
+             active:bg-gray-200 dark:active:bg-white/20" href="#contact">Contact</a>
 
                     <button class="mt-2 w-full py-2.5 bg-primary text-white font-bold 
                    rounded-lg hover:bg-opacity-90 active:bg-opacity-80 
@@ -278,13 +284,7 @@
 
             </section>
 
-
-
-
-
-
-
-            <section class="py-20 sm:py-28 relative overflow-hidden" data-animate>
+            <section id="our-journey" class="py-20 sm:py-28 relative overflow-hidden" data-animate>
 
                 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-12">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
@@ -344,7 +344,7 @@
 
 
             <!-- Mission & Vision -->
-            <section class="bg-background-light dark:bg-text-dark/5 py-20 sm:py-28" data-animate>
+            <section id="about-us" class="bg-background-light dark:bg-text-dark/5 py-20 sm:py-28" data-animate>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div class="relative rounded-2xl overflow-hidden shadow-xl order-last lg:order-first">
@@ -470,7 +470,7 @@
             </section>
 
             <!-- Services -->
-            <section class="bg-background-light dark:bg-text-dark/5 py-20 sm:py-28" data-animate>
+            <section id="services" class="bg-background-light dark:bg-text-dark/5 py-20 sm:py-28" data-animate>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center mb-16">
                         <span class="text-secondary font-bold text-sm uppercase tracking-widest text-shadow-xl">Our
@@ -702,7 +702,7 @@
             </section>
 
             <!-- Contact Section -->
-            <section class="py-20 sm:py-28 bg-primary text-white" data-animate>
+            <section id="contact" class="py-20 sm:py-28 bg-primary text-white" data-animate>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
                         <div>
@@ -796,10 +796,13 @@
                     <div>
                         <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Navigation</h3>
                         <ul class="mt-4 space-y-2">
-                            <li><a class="text-base hover:text-white transition-colors" href="#">Our Journey</a></li>
-                            <li><a class="text-base hover:text-white transition-colors" href="#">Services</a></li>
-                            <li><a class="text-base hover:text-white transition-colors" href="#">About Us</a></li>
-                            <li><a class="text-base hover:text-white transition-colors" href="#">Contact</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#our-journey">Our
+                                    Journey</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#services">Services</a>
+                            </li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#about-us">About Us</a>
+                            </li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#contact">Contact</a></li>
                         </ul>
                     </div>
                     <div>
@@ -860,10 +863,27 @@
     <script>
         const menuBtn = document.getElementById("mobile-menu-button");
         const mobileMenu = document.getElementById("mobile-menu");
-
         menuBtn.addEventListener("click", () => {
             mobileMenu.classList.toggle("hidden");
             mobileMenu.classList.toggle("flex");
+        });
+
+        // Smoothly handle in-page anchor clicks and close mobile menu on small screens
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function (e) {
+                const target = this.getAttribute('href');
+                if (!target || target === '#') return;
+                const el = document.querySelector(target);
+                if (el) {
+                    e.preventDefault();
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // close mobile menu if open
+                    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('flex');
+                    }
+                }
+            });
         });
     </script>
 
