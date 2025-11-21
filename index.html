@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AA Heritage Navigation Ltd | Intelligent Maritime &amp; Logistics Solutions</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="/style.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": { DEFAULT: "#1480c3" },
+                        "secondary": { DEFAULT: "#24beed" },
+                        "accent": "#3FC2E6",
+                        "text-dark": "#0B1220",
+                        "background-light": "#F3F7F9",
+                        "background-dark": "#050a12",
+                        "white": "#FFFFFF"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'float': 'float 3s ease-in-out infinite'
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        [data-animate].animate-fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body {
+            scroll-behavior: smooth;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            padding-top: 1.5rem;
+        }
+
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+        }
+
+        /* --- WhatsApp floating widget --- */
+        .whatsapp-widget {
+            position: fixed;
+            right: 1rem;
+            bottom: 1.25rem;
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            pointer-events: auto;
+        }
+
+        .whatsapp-button {
+            width: 56px;
+            height: 56px;
+            background: #ffffff;
+            color: #fff;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.18);
+            cursor: pointer;
+            border: none;
+        }
+
+        .whatsapp-close {
+            position: absolute;
+            right: 0.25rem;
+            top: -0.5rem;
+            background: rgba(11, 12, 14, 0.85);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .whatsapp-label {
+            display: none;
+            background: #075E54;
+            color: #fff;
+            padding: 0.45rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 6px 18px rgba(7, 94, 84, 0.12);
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .whatsapp-label {
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="font-display bg-background-light text-text-dark dark:bg-background-dark dark:text-background-light overflow-x-hidden">
+    <div class="relative flex min-h-screen w-full flex-col group/design-root">
+
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark/90 backdrop-blur-lg border-b border-gray-200/30 dark:border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+
+                    <!-- Logo + Brand -->
+                    <div class="flex items-center gap-3">
+                        <img src="assets/AA Heritage logo1.jpg" alt="Logo" class="w-12 h-9 object-cover rounded-md">
+                        <h2
+                            class="text-text-dark dark:text-white text-base sm:text-lg font-bold tracking-tight whitespace-nowrap">
+                            Heritage Navigation Ltd
+                        </h2>
+                    </div>
+
+                    <!-- Desktop Nav -->
+                    <nav class="hidden md:flex items-center gap-7">
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">Our Journey</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">Services</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">About Us</a>
+                        <a class="text-sm font-medium hover:text-accent transition-colors" href="#">Contact</a>
+
+                        <button
+                            class="ml-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-opacity-90 transition shadow-md">
+                            Request Consultation
+                        </button>
+                    </nav>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden text-text-dark dark:text-white focus:outline-none">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu -->
+                <nav id="mobile-menu" class="hidden flex-col gap-1 py-3 md:hidden 
+           bg-white dark:bg-background-dark 
+           rounded-lg shadow-md mt-2 px-4">
+
+                    <a class="text-sm font-medium py-2 px-2 rounded-md 
+             hover:bg-gray-100 dark:hover:bg-white/10 
+             active:bg-gray-200 dark:active:bg-white/20" href="#">Our Journey</a>
+
+                    <a class="text-sm font-medium py-2 px-2 rounded-md 
+             hover:bg-gray-100 dark:hover:bg-white/10 
+             active:bg-gray-200 dark:active:bg-white/20" href="#">Services</a>
+
+                    <a class="text-sm font-medium py-2 px-2 rounded-md 
+             hover:bg-gray-100 dark:hover:bg-white/10 
+             active:bg-gray-200 dark:active:bg-white/20" href="#">About Us</a>
+
+                    <a class="text-sm font-medium py-2 px-2 rounded-md 
+             hover:bg-gray-100 dark:hover:bg-white/10 
+             active:bg-gray-200 dark:active:bg-white/20" href="#">Contact</a>
+
+                    <button class="mt-2 w-full py-2.5 bg-primary text-white font-bold 
+                   rounded-lg hover:bg-opacity-90 active:bg-opacity-80 
+                   transition">
+                        Request Consultation
+                    </button>
+                </nav>
+
+            </div>
+        </header>
+
+
+        <main>
+            <!-- Hero Section -->
+            <section class="relative overflow-hidden">
+
+                <!-- Single animated hero background -->
+                <div class="hero-bg">
+                    <img id="heroImage" class="hero-image" src="/assets/port1.jpg" />
+                </div>
+
+                <!-- Foreground Content -->
+                <div class="min-h-[calc(100vh-64px)] flex items-center justify-center relative z-10 px-4">
+                    <div class="text-center max-w-4xl">
+
+                        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tighter mb-6 animate-fade-in-up"
+                            style="animation-delay: 0.2s;">
+                            Powering West Africa’s Maritime Future with Digital Intelligence
+                        </h1>
+
+                        <p class="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-fade-in-up"
+                            style="animation-delay: 0.4s;">
+                            Integrated maritime, energy logistics, and digital compliance solutions—engineered for
+                            safety, efficiency, and regulatory excellence across the region.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up"
+                            style="animation-delay: 0.6s;">
+
+                            <button
+                                class="px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-opacity-90 transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                                Request Consultation
+                            </button>
+
+                            <button
+                                class="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-300">
+                                Explore Our Platform
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+
+
+
+
+
+
+            <section class="py-20 sm:py-28 relative overflow-hidden" data-animate>
+
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
+
+                        <!-- CONTENT COLUMN -->
+                        <div class="relative z-10">
+                            <span class="text-secondary font-bold text-sm uppercase tracking-widest text-shadow-xl">Our
+                                Journey</span>
+                            <h2
+                                class="mt-3 text-2xl sm:text-4xl font-bold text-text-dark dark:text-white tracking-tight text-shadow-xl">
+                                AA HERITAGE NAVIGATION LTD
+                                <div class="mt-4 w-74 h-0.5 bg-primary "></div>
+                            </h2>
+
+
+                            <div
+                                class="mt-6 text-lg text-text-dark/80 dark:text-white/70 leading-relaxed space-y-6 px-4 sm:px-0 sm:max-w-2xl">
+                                <p>
+                                    AA HERITAGE NAVIGATION LTD is an integrated maritime, energy logistics, and IT
+                                    solution-driven provider based in Nigeria. Our structure is explicitly engineered to
+                                    deliver end-to-end service excellence across the West African region, leveraging
+                                    technology for operational superiority and compliance.
+                                </p>
+
+                                <p>
+                                    Our comprehensive service portfolio spans core maritime functions—including ship
+                                    brokerage, vessel management, and full port operations—and specialized,
+                                    technology-backed consulting. This unique combination allows us to deploy
+                                    sophisticated digital solutions, such as the Minimum Safety Standards (MSS) Digital
+                                    Platform, designed for regulatory enforcement and real-time safety verification of
+                                    tanker trucks, vessels, and oil & gas facilities.
+                                </p>
+
+                                <p>
+                                    We are committed to maximizing safety, efficiency, and transparency for clients in
+                                    both the critical oil & gas and rapidly growing non-oil sectors, positioning AA
+                                    Heritage as the partner of choice for compliant and high-performance logistics.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- IMAGE COLUMN -->
+                        <div class="flex justify-center lg:justify-end relative z-20 mt-10 lg:mt-20 ">
+                            <div class="rounded-full overflow-hidden shadow-xl border-4 border-white/20 dark:border-white/10 outline-2 outline-offset-2 outline-dotted 
+                            w-64 h-64 sm:w-90 sm:h-90 lg:w-[550px] lg:h-[550px] lg:-mr-16">
+                                <img alt="AA Heritage — Maritime & Logistics Innovation in West Africa compass"
+                                    src="/assets/journey.jpg"
+                                    class="w-full h-full object-cover inset-shadow-sm brightness-250 drop-shadow-2xl compass" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <!-- Mission & Vision -->
+            <section class="bg-background-light dark:bg-text-dark/5 py-20 sm:py-28" data-animate>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                        <div class="relative rounded-2xl overflow-hidden shadow-xl order-last lg:order-first">
+                            <img alt="Engineers on vessel deck with oil rig"
+                                class="w-full h-full object-cover aspect-square "
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiMM64J8jUxc-zJT7MCPkeCBIKQ-oqdMNn_-0ecaWXQ1DrXtWH-NUrbqvxKC38t0pCRNt93xIAxciXbIQH-vO6HD_higY8LipG1hGSH60d0HcRxPKr_bgT7JfAheTU-CHlQ1yzHg0RyY1miel3MJBzEw-ERvV5-NLbfizg_FluVkYcDAT2ujyIOMcFkkk5avxz695yCvF3fPtf1nXS60A5dN8p8A9heMztEWhknpy56fJZxasjurnp2l8SAB0WZfrPmysDL1mKEz7a" />
+                        </div>
+                        <div>
+                            <span
+                                class="text-secondary text-shadow-xl font-bold text-sm uppercase tracking-widest">Defining
+                                Our
+                                Purpose</span>
+                            <h2
+                                class="mt-3 text-3xl sm:text-4xl font-bold text-text-dark dark:text-white tracking-tight text-shadow-xl">
+                                Our Mission &amp; Vision</h2>
+                            <div class="mt-4 w-76 h-0.5 bg-primary "></div>
+                            <div class="space-y-8 mt-10">
+                                <div class="flex gap-5">
+                                    <div class="mt-1 flex-shrink-0">
+                                        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                            <span
+                                                class="material-symbols-outlined text-secondary text-2xl">rocket_launch</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-text-dark dark:text-white text-shadow-xl">Our
+                                            Mission</h3>
+                                        <p class="mt-2 text-text-dark/80 dark:text-white/70">To be the most reliable and
+                                            innovative integrated
+                                            maritime and logistics partner in West Africa,
+                                            delivering world-class safety, efficiency, and
+                                            environmental stewardship across the energy,
+                                            shipping, and supply chain sectors.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-5">
+                                    <div class="mt-1 flex-shrink-0">
+                                        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                            <span
+                                                class="material-symbols-outlined text-secondary text-2xl">visibility</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-text-dark dark:text-white text-shadow-xl">Our
+                                            Vision</h3>
+                                        <p class="mt-2 text-text-dark/80 dark:text-white/70">To set the gold standard
+                                            for heritage-driven
+                                            navigation and modern logistics solutions, connecting
+                                            Africa to the global economy with unparalleled
+                                            excellence and integrity.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section class="py-20 sm:py-28" data-animate>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <span class="text-secondary font-bold text-sm uppercase tracking-widest text-shadow-xl">Why
+                            Choose Us?</span>
+                        <h2
+                            class="mt-3 text-3xl sm:text-4xl font-bold text-text-dark dark:text-white tracking-tight text-shadow-xl">
+                            Your Strategic Maritime Partner
+                            <div class="mt-4 w-24 h-0.5 bg-primary mx-auto"></div>
+                        </h2>
+                        <h3 class="mt-3 ">Our commitment to excellence ensures that we consistently deliver
+                            outstanding results, helping businesses stay ahead of the competition.</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Repeat 4 times -->
+                        <div
+                            class="group bg-white dark:bg-background-dark/80 p-7 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-white/10 text-center">
+                            <div
+                                class="size-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-5 text-white">
+                                <span class="material-symbols-outlined text-2xl">badge</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-text-dark dark:text-white mb-2">Industry Expertise</h3>
+                            <p class="text-text-dark/80 dark:text-white/70 text-sm">Experience in multiple sectors,
+                                offering
+                                insights, proven strategies.</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-background-dark/80 p-7 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-white/10 text-center">
+                            <div
+                                class="size-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-5 text-white">
+                                <span class="material-symbols-outlined text-2xl">construction</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-text-dark dark:text-white mb-2">Tailored Solutions</h3>
+                            <p class="text-text-dark/80 dark:text-white/70 text-sm">Providing customized, adaptable
+                                strategies
+                                designed to address specific client challenges</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-background-dark/80 p-7 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-white/10 text-center">
+                            <div
+                                class="size-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-5 text-white">
+                                <span class="material-symbols-outlined text-2xl">memory</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-text-dark dark:text-white mb-2">Cutting-Edge Technology
+                            </h3>
+                            <p class="text-text-dark/80 dark:text-white/70 text-sm">Leveraging the latest innovations,
+                                including AI,
+                                automation, and data analytics.</p>
+                        </div>
+                        <div
+                            class="group bg-white dark:bg-background-dark/80 p-7 rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-white/10 text-center">
+                            <div
+                                class="size-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-5 text-white">
+                                <span class="material-symbols-outlined text-2xl">verified</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-text-dark dark:text-white mb-2">Proven Track Record</h3>
+                            <p class="text-text-dark/80 dark:text-white/70 text-sm">A history of successful projects,
+                                satisfied clients, and
+                                strategic partnerships that reinforce our reputation</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services -->
+            <section class="bg-background-light dark:bg-text-dark/5 py-20 sm:py-28" data-animate>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <span class="text-secondary font-bold text-sm uppercase tracking-widest text-shadow-xl">Our
+                            Focus Areas</span>
+                        <h2
+                            class="mt-3 text-3xl sm:text-4xl font-bold text-text-dark dark:text-white tracking-tight text-shadow-xl">
+                            Comprehensive Service Spectrum
+                            <div class="mt-4 w-24 h-0.5 bg-primary mx-auto"></div>
+                        </h2>
+                        <h3 class="mt-3">Our multidisciplinary approach enables us to provide well-rounded solutions
+                            that align with industry demands and long-term business objectives.</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Each service card -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-white/10 flex flex-col">
+                            <img class="h-48 w-full object-cover" src="assets/Maritime_&_Shipping.jpg"
+                                alt="Maritime & Shipping" />
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span
+                                        class="material-symbols-outlined text-secondary text-2xl">directions_boat</span>
+                                    <h3 class="text-xl font-bold text-text-dark dark:text-white ">Maritime
+                                        &amp; Shipping
+                                    </h3>
+                                </div>
+                                <ul
+                                    class="text-sm text-text-dark/80 dark:text-white/70 space-y-1 list-disc pl-5 flex-grow">
+                                    <li>Ship Brokerage & Trading</li>
+                                    <li>Vessel Management</li>
+                                    <li>Crewing & Training</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Repeat with different content/icons -->
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-white/10 flex flex-col">
+                            <img class="h-48 w-full object-cover" src="assets/maritime_support.jpg"
+                                alt="Marine Support" />
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="material-symbols-outlined text-secondary text-2xl">support_agent</span>
+                                    <h3 class="text-xl font-bold text-text-dark dark:text-white">Marine Support
+                                        and Logistics</h3>
+                                </div>
+                                <ul
+                                    class="text-sm text-text-dark/80 dark:text-white/70 space-y-1 list-disc pl-5 flex-grow">
+                                    <li>Marine Logistics and
+                                        marine consultancy
+                                        services.</li>
+                                    <li>Port & Harbor Services</li>
+                                    <li>Specialized Services</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-white/10 flex flex-col">
+                            <img class="h-48 w-full object-cover" src="assets/oil_gas.jpg" alt="Oil, Gas & Logistics" />
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span
+                                        class="material-symbols-outlined text-secondary text-2xl">local_gas_station</span>
+                                    <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2">Oil &amp; Gas and
+                                        General
+                                        Logistics
+                                        Logistics</h3>
+                                </div>
+                                <ul
+                                    class="text-sm text-text-dark/80 dark:text-white/70 space-y-1 list-disc pl-5 flex-grow">
+                                    <li>Petroleum Products</li>
+                                    <li>Bunker Services</li>
+                                    <li>General Supply Chain</li>
+                                    <li>Transportation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 dark:border-white/10 flex flex-col">
+                            <img class="h-48 w-full object-cover" src="assets/engineer.jpg" alt="Marine Engineering" />
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="material-symbols-outlined text-secondary text-2xl">engineering</span>
+                                    <h3 class="text-xl font-bold text-text-dark dark:text-white">Marine Engineering</h3>
+                                </div>
+                                <ul
+                                    class="text-sm text-text-dark/80 dark:text-white/70 space-y-1 list-disc pl-5 flex-grow">
+                                    <li>Marine Engineering, Procurement,
+                                        and Construction (EPC)</li>
+                                    <li>Safety & Environment & Standard
+                                        Compliance</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tailored Services for Growth -->
+            <section class="py-20 sm:py-28 bg-background-light dark:bg-text-dark/5" data-animate>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2
+                            class="text-3xl sm:text-4xl font-black text-text-dark dark:text-white tracking-tight text-shadow-xl">
+                            Tailored Services for Growth
+                        </h2>
+                        <div class="mt-4 w-24 h-0.5 bg-primary mx-auto"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <!-- Card 1: Technology Integration -->
+                        <div
+                            class="group bg-white dark:bg-background-dark rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-white/10 flex items-start gap-4">
+                            <div class="size-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span
+                                    class="material-symbols-outlined text-white text-2xl">integration_instructions</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2">Technology Integration
+                                </h3>
+                                <p class="text-text-dark/80 dark:text-white/70 text-sm">
+                                    Implementing advanced technological solutions, including AI and automation, to
+                                    enhance productivity.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Business Strategy -->
+                        <div
+                            class="group bg-white dark:bg-background-dark rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-white/10 flex items-start gap-4">
+                            <div class="size-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-white text-2xl">flag</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2">Business Strategy</h3>
+                                <p class="text-text-dark/80 dark:text-white/70 text-sm">
+                                    Expert guidance on strategic planning, operational efficiency, and market expansion.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Risk Management -->
+                        <div
+                            class="group bg-white dark:bg-background-dark rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-white/10 flex items-start gap-4">
+                            <div class="size-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-white text-2xl">gpp_bad</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2">Risk Management</h3>
+                                <p class="text-text-dark/80 dark:text-white/70 text-sm">
+                                    Identifying potential business risks and developing proactive strategies to mitigate
+                                    challenges and ensure stability.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4: Sustainability Initiatives -->
+                        <div
+                            class="group bg-white dark:bg-background-dark rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-white/10 flex items-start gap-4">
+                            <div class="size-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-white text-2xl">recycling</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-text-dark dark:text-white mb-2">Sustainability
+                                    Initiatives</h3>
+                                <p class="text-text-dark/80 dark:text-white/70 text-sm">
+                                    Assisting businesses in adopting eco-friendly and socially responsible practices to
+                                    align with global sustainability goals.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Vision for the Future -->
+            <section class="py-20 sm:py-28 bg-background-light dark:bg-text-dark/5" data-animate>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <!-- Text Content -->
+                        <div>
+                            <h2
+                                class="text-3xl sm:text-4xl lg:text-5xl font-black text-text-dark dark:text-white tracking-tight text-shadow-xl">
+                                Our Vision for the Future
+                            </h2>
+                            <div class="mt-4 w-24 h-0.5 bg-primary"></div>
+
+                            <div class="mt-10 space-y-8">
+                                <!-- Market Expansion -->
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-2">Market
+                                        Expansion</h3>
+                                    <p class="text-text-dark/80 dark:text-white/70">
+                                        Targeting new geographic regions and industries to broaden our business reach
+                                        and capitalize on emerging opportunities.
+                                    </p>
+                                </div>
+
+                                <!-- Technology Investments -->
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-2">Technology Investments
+                                    </h3>
+                                    <p class="text-text-dark/80 dark:text-white/70">
+                                        Allocating resources to research and development, ensuring we stay ahead in AI,
+                                        automation, and data-driven solutions.
+                                    </p>
+                                </div>
+
+                                <!-- Talent Development -->
+                                <div>
+                                    <h3 class="text-xl sm:text-2xl font-bold text-secondary mb-2">Talent Development
+                                    </h3>
+                                    <p class="text-text-dark/80 dark:text-white/70">
+                                        Investing in workforce training and leadership programs to nurture talent and
+                                        strengthen our organizational capabilities.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="rounded-2xl overflow-hidden shadow-xl">
+                            <img src="/assets/port2.jpg"
+                                alt="Team collaborating with charts, tablets, and world map — AA Heritage Vision for the Future"
+                                class="w-full h-auto object-cover" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="py-20 sm:py-28 bg-primary text-white" data-animate>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                        <div>
+                            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Get in Touch</h2>
+                            <p class="mt-4 text-white/80 max-w-md">Ready to partner with AA Heritage? Reach out for
+                                consultations or service support.</p>
+                            <div class="mt-8 space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-secondary">mail</span>
+                                    <a class="hover:text-accent transition-colors"
+                                        href="mailto:info@aaheritage.com">info@aaheritage.com</a>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <span class="material-symbols-outlined text-secondary">call</span>
+                                    <a class="hover:text-accent transition-colors" href="tel:+2349086223063">+234 908
+                                        6223 063</a>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined mt-0.5 text-secondary">location_on</span>
+                                    <p>155a Isale Eko Avenue Dolphin Estate Ikoyi Lagos </p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <span class="material-symbols-outlined mt-0.5 text-secondary">location_on</span>
+                                    <p>26 Garba datti Babawo kabama phase 2 Zaria </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-background-dark/90 p-8 rounded-2xl shadow-xl">
+                            <form id="contactForm" class="space-y-5">
+                                <div>
+                                    <label class="block text-sm font-medium text-text-dark dark:text-white mb-1.5"
+                                        for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 
+                       dark:bg-background-dark text-black focus:ring-2 
+                       focus:ring-primary focus:border-transparent transition" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-text-dark dark:text-white mb-1.5"
+                                        for="email">Email</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 
+                       dark:bg-background-dark text-black focus:ring-2 
+                       focus:ring-primary focus:border-transparent transition" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-text-dark dark:text-white mb-1.5"
+                                        for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 
+                       dark:bg-background-dark text-black focus:ring-2 
+                       focus:ring-primary focus:border-transparent transition" />
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-text-dark dark:text-white mb-1.5"
+                                        for="message">Message</label>
+                                    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/20 
+                       dark:bg-background-dark text-black focus:ring-2 
+                       focus:ring-primary focus:border-transparent transition"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 bg-primary text-white font-bold rounded-lg hover:bg-opacity-90 
+                   transition duration-300 transform hover:-translate-y-0.5 shadow-md">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-text-dark text-white/70 pt-16 pb-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    <div class="col-span-2 lg:col-span-2">
+                        <!-- Logo + Brand -->
+                        <div class="flex items-center gap-3">
+                            <img src="assets/AA_heritage_dark_logo.png" alt="Logo"
+                                class="w-12 h-9 object-cover rounded-md">
+                            <h2
+                                class="text-white dark:text-white text-base sm:text-lg font-bold tracking-tight whitespace-nowrap">
+                                Heritage Navigation Ltd
+                            </h2>
+                        </div>
+                        <p class="mt-4 text-sm max-w-xs">Engineering excellence in maritime and logistics across West
+                            Africa.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Navigation</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Our Journey</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Services</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">About Us</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Services</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Maritime Operations</a>
+                            </li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Marine Logistics</a>
+                            </li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Oil & Gas</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Engineering</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-semibold text-white tracking-wider uppercase">Connect</h3>
+                        <ul class="mt-4 space-y-2">
+                            <li><a class="text-base hover:text-white transition-colors" href="#">LinkedIn</a></li>
+                            <li><a class="text-base hover:text-white transition-colors" href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-white/20 text-center">
+                    <p class="text-sm">© 2025 AA Heritage Navigation Ltd. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        });
+
+        // Fixed scroll animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the correct Tailwind animation class
+                        entry.target.classList.add('animate-fade-in-up');
+                        // Optional: remove data-animate to clean up
+                        entry.target.removeAttribute('data-animate');
+                        // Stop observing after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('[data-animate]').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <script>
+        const menuBtn = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("flex");
+        });
+    </script>
+
+    <!-- WhatsApp floating widget -->
+    <div id="whatsappWidget" class="whatsapp-widget" aria-hidden="false">
+        <button id="whatsappClose" class="whatsapp-close" title="Close chat widget"
+            aria-label="Close chat widget">×</button>
+        <button id="whatsappButton" class="whatsapp-button" aria-label="Open WhatsApp chat">
+            <!-- replaced inline SVG with chaticon.png from assets -->
+            <img src="/assets/chaticon.png" alt="Chat icon" class="w-14 h-14" />
+        </button>
+        <button id="whatsappLabel" class="whatsapp-label" aria-hidden="true">Chat on WhatsApp</button>
+    </div>
+
+    <script>
+        // Contact form -> mailto forwarding
+        (function () {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = (document.getElementById('name') || {}).value || '';
+                const email = (document.getElementById('email') || {}).value || '';
+                const phone = (document.getElementById('phone') || {}).value || '';
+                const message = (document.getElementById('message') || {}).value || '';
+
+                const subject = `Website Contact: ${name || email || 'New Message'}`;
+                const bodyLines = [
+                    `Name: ${name}`,
+                    `Email: ${email}`,
+                    `Phone: ${phone}`,
+                    '',
+                    'Message:',
+                    message
+                ];
+                const body = bodyLines.join('\n');
+
+                const mailto = `mailto:info@aaheritage.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                // Open default mail client
+                window.location.href = mailto;
+            });
+        })();
+
+        // WhatsApp widget behavior
+        (function () {
+            const widget = document.getElementById('whatsappWidget');
+            const btn = document.getElementById('whatsappButton');
+            const closeBtn = document.getElementById('whatsappClose');
+            const label = document.getElementById('whatsappLabel');
+            const phone = '2349086223063'; // no plus sign for wa.me
+
+            if (btn) {
+                btn.addEventListener('click', function () {
+                    // Optional prefilled message
+                    const text = encodeURIComponent('Hello AA Heritage, I would like to inquire about your services.');
+                    const url = `https://wa.me/${phone}?text=${text}`;
+                    window.open(url, '_blank');
+                });
+            }
+
+            if (label) {
+                label.addEventListener('click', function () {
+                    if (btn) btn.click();
+                });
+            }
+
+            if (closeBtn && widget) {
+                closeBtn.addEventListener('click', function () {
+                    widget.style.display = 'none';
+                });
+            }
+        })();
+    </script>
+    <script src="/script.js"></script>
+</body>
+
+</html>
